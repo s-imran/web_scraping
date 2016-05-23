@@ -1,5 +1,4 @@
 import sys
-import re
 from bs4 import BeautifulSoup
 from selenium import webdriver
 from selenium.webdriver.support.ui import WebDriverWait
@@ -42,7 +41,8 @@ def main(page_number, output_file, driver):
         for l in soup.find_all("div", class_="article-list List-results ng-isolate-scope"):
             for d in l.find_all("div", class_="description u-mb-1"):
                 info = extract_infos_from_description(d)
-                output_file.write("{}, {}\n".format(info["year"], info["conf"]))
+                output_file.write("{}, {}\n".format(info["year"],
+                                                    info["conf"]))
     finally:
         main(page_number + 1, output_file, driver)
 
